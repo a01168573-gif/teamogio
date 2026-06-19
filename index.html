@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Te amo Gio ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at top, #1a0025 0%, #3b0033 40%, #6b0a3f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Playfair Display', serif;
+      position: relative;
+    }
+
+    /* ---- Floating hearts ---- */
+    .hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -80px;
+      font-size: 1.5rem;
+      animation: floatHeart linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatHeart {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.5; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ---- Particles ---- */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 180, 200, 0.4);
+      animation: drift linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes drift {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+    }
+
+    /* ---- Main card ---- */
+    .card {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 60px 70px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 150, 180, 0.2);
+      border-radius: 30px;
+      box-shadow:
+        0 0 60px rgba(200, 0, 100, 0.3),
+        0 0 120px rgba(180, 0, 80, 0.15),
+        inset 0 0 60px rgba(255, 100, 150, 0.05);
+      max-width: 600px;
+      width: 90%;
+      animation: cardAppear 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      opacity: 0;
+      transform: scale(0.85) translateY(40px);
+    }
+
+    @keyframes cardAppear {
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ---- Rose icon ---- */
+    .rose {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 10px;
+      animation: rosePulse 2.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(255, 80, 120, 0.8));
+    }
+
+    @keyframes rosePulse {
+      0%, 100% { transform: scale(1) rotate(-5deg); }
+      50%       { transform: scale(1.12) rotate(5deg); }
+    }
+
+    /* ---- Main title ---- */
+    .title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3.5rem, 10vw, 6rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff9dba 0%, #ff4d8f 40%, #ff1a6e 70%, #ffd0e4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      animation: shimmer 3s linear infinite;
+      background-size: 200% auto;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* ---- Divider ---- */
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff4d8f, transparent);
+      margin: 20px auto;
+      border-radius: 2px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 5px #ff4d8f; }
+      to   { box-shadow: 0 0 20px #ff1a6e, 0 0 40px #ff1a6e; }
+    }
+
+    /* ---- Subtitle ---- */
+    .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255, 200, 220, 0.85);
+      letter-spacing: 0.05em;
+      margin-bottom: 30px;
+      animation: fadeInUp 1.4s 0.6s both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Beating heart ---- */
+    .beat {
+      font-size: 3rem;
+      display: inline-block;
+      animation: beat 1.2s ease-in-out infinite;
+      filter: drop-shadow(0 0 12px rgba(255, 30, 80, 0.9));
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      14%       { transform: scale(1.3); }
+      28%       { transform: scale(1); }
+      42%       { transform: scale(1.2); }
+      70%       { transform: scale(1); }
+    }
+
+    /* ---- Sparkles ---- */
+    .sparkles {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #ffd6e7;
+      border-radius: 50%;
+      animation: twinkle var(--dur, 2s) var(--delay, 0s) ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50%       { opacity: 1; transform: scale(1.5); }
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 480px) {
+      .card { padding: 40px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts background -->
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <!-- Main card -->
+  <div class="card">
+    <!-- Sparkles inside card -->
+    <div class="sparkles" id="sparkles"></div>
+
+    <span class="rose">🌹</span>
+
+    <h1 class="title">Te amo Gio</h1>
+
+    <div class="divider"></div>
+
+    <p class="subtitle">Cada día a tu lado es el más hermoso de mi vida</p>
+
+    <span class="beat">❤️</span>
+  </div>
+
+  <script>
+    /* ---- Generate floating hearts ---- */
+    const heartsContainer = document.getElementById('heartsContainer');
+    const heartEmojis = ['❤️', '💕', '💖', '💗', '💓', '🌹', '✨'];
+
+    function createHeart() {
+      const h = document.createElement('div');
+      h.classList.add('heart');
+      h.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+      const dur = Math.random() * 8 + 6;
+      h.style.animationDuration = dur + 's';
+      h.style.animationDelay = Math.random() * 5 + 's';
+      heartsContainer.appendChild(h);
+      setTimeout(() => h.remove(), (dur + 5) * 1000);
+    }
+
+    // Spawn hearts periodically
+    for (let i = 0; i < 15; i++) {
+      setTimeout(createHeart, i * 400);
+    }
+    setInterval(createHeart, 800);
+
+    /* ---- Generate sparkles inside card ---- */
+    const sparklesEl = document.getElementById('sparkles');
+    for (let i = 0; i < 20; i++) {
+      const s = document.createElement('div');
+      s.classList.add('sparkle');
+      s.style.left   = Math.random() * 100 + '%';
+      s.style.top    = Math.random() * 100 + '%';
+      s.style.setProperty('--dur',   (Math.random() * 2 + 1.5) + 's');
+      s.style.setProperty('--delay', (Math.random() * 3) + 's');
+      sparklesEl.appendChild(s);
+    }
+
+    /* ---- Click / tap to burst hearts ---- */
+    document.body.addEventListener('click', (e) => {
+      for (let i = 0; i < 8; i++) {
+        const burst = document.createElement('div');
+        burst.style.cssText = `
+          position: fixed;
+          left: ${e.clientX}px;
+          top: ${e.clientY}px;
+          font-size: ${Math.random() * 1.5 + 1}rem;
+          pointer-events: none;
+          z-index: 100;
+          animation: burstAway 1s ease-out forwards;
+          transform-origin: center;
+        `;
+        burst.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        document.body.appendChild(burst);
+
+        const angle = (Math.PI * 2 * i) / 8;
+        const dist  = Math.random() * 80 + 40;
+        burst.animate([
+          { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
+          { transform: `translate(calc(-50% + ${Math.cos(angle)*dist}px), calc(-50% + ${Math.sin(angle)*dist}px)) scale(1.2)`, opacity: 0 }
+        ], { duration: 900, easing: 'ease-out', fill: 'forwards' });
+
+        setTimeout(() => burst.remove(), 1000);
+      }
+    });
+  </script>
+</body>
+</html>
